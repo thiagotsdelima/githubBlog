@@ -1,5 +1,5 @@
 import { Header } from "../../components/Header";
-import { HomeContainer, Wrapper } from "./styles";
+import { HomeContainer, TransactionsContainer, TransactionsTable, Wrapper } from "./styles";
 import { Sidebar } from '../../components/Sidebar';
 import { Post } from '../../components/Post';
 import { Input } from '../../components/Input';
@@ -15,12 +15,14 @@ export function Home() {
           <span>6 publicações</span>
         </section>
         <Input />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <TransactionsContainer>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+        </TransactionsContainer>
       </Wrapper>
     </HomeContainer>
   )

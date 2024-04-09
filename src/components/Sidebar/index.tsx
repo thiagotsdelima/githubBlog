@@ -22,15 +22,15 @@ export function Sidebar() {
         </main>
         <footer>
           <span>
-          <FaGithub style={{ marginRight: '8px' }} />
+          <FaGithub />
          <strong>cameronwll</strong>
           </span>
           <span>
-          <FaBuilding style={{ marginRight: '8px' }} />
+          <FaBuilding />
           <strong>Rocketseat</strong>
           </span>
           <span>
-          <MdPeopleAlt style={{ marginRight: '8px' }} />
+          <MdPeopleAlt />
           <strong>32 seguidores</strong>
           </span>
         </footer>

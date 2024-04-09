@@ -4,13 +4,15 @@ export const HomeContainer = styled.div`
 `;
 
 export const Wrapper = styled.div`
-width: 100%;
-max-width: 79rem;
-margin: 0 auto 14.6rem;
-display: grid;
-grid-template-columns: 1fr; 
-grid-template-rows: 212px 1fr;
-padding: 1rem;
-gap: 2rem;
-align-items: flex-start
+  width: 100%;
+  max-width: 79rem;
+  margin: 0 auto;
+  padding: 1rem;
+`;
+
+export const TransactionsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  
+  margin: 4rem auto 0;
+  padding: 0 1.5rem;
 `;

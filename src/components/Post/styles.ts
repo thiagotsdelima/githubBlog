@@ -11,6 +11,8 @@ export const PostContainer = styled.section`
 `;
 
 export const PostContent = styled.div`
+background: ${props => props.theme['base-900']};
+padding: 2.5rem 0 7.5rem;
 header {
 
 }

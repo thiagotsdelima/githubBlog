@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const SidebarContainer = styled.section`
 width: 54rem;
 margin: -6rem auto;
-padding: 2.5rem 1.5rem 3rem;
+padding: 2.5rem 3rem 3rem;
 border-radius: 10px;
 background: ${props => props.theme['base-900']};
 height: 13.75rem;
@@ -21,11 +21,11 @@ align-items: flex-start;
   justify-content: center;
   border-radius: 8px;
   }
-
 `;
 
 export const SidebarContent = styled.div`
 width: 624px;
+margin-left: 2rem;
 header {
   display: flex;
   justify-content: space-between;
@@ -46,15 +46,20 @@ main {
   }
 }
 footer {
-  align-items: center;
-  color: ${props => props.theme['gray-400']};
-}
-footer span{
-  font-size: 1rem;
-  margin-right: 1.5rem;
-  line-height: 160%;
-  svg {
-    align-items: center;
+    display: flex;
+    flex-direction: row; 
+    gap: 16px; 
+    align-items: center; 
+    flex-wrap: wrap; 
   }
-}
+
+  footer span {
+    display: flex;
+    align-items: center; 
+    color: ${props => props.theme['gray-400']};
+
+    strong {
+      margin-left: 8px; /* Espaçamento entre o ícone e o texto */
+    }
+  }
 `;
