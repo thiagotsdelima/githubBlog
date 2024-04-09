@@ -16,6 +16,9 @@ export const GlobalStyle = createGlobalStyle`
   font-size: 16px;
   scroll-behavior: smooth;
   }
+  body {
+    background: ${props => props.theme['base-1300']};
+  }
   body, input, textarea, button {
     font: 400 1rem Nunito, sans-serif;
   }

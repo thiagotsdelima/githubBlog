@@ -10,7 +10,16 @@ export function Home() {
       <Header/>
       <Wrapper>
         <Sidebar />
+        <section>
+          <strong>Publicações</strong>
+          <span>6 publicações</span>
+        </section>
         <Input />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
         <Post />
       </Wrapper>
     </HomeContainer>
