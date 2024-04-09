@@ -12,3 +12,7 @@ margin: 0 auto;
 display: flex;
 justify-content: space-between;
 `;
+
+export const LogoImage = styled.img`
+  margin-bottom:100px;
+`;

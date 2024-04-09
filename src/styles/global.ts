@@ -19,6 +19,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: ${props => props.theme['base-1300']};
   }
+  button, a {
+    cursor: pointer;
+    text-decoration: none;
+  }
   body, input, textarea, button {
     font: 400 1rem Nunito, sans-serif;
   }
