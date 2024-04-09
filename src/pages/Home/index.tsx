@@ -1,5 +1,5 @@
 import { Header } from "../../components/Header";
-import { HomeContainer, TransactionsContainer, TransactionsTable, Wrapper } from "./styles";
+import { HomeContainer, TransactionsContainer, Wrapper } from "./styles";
 import { Sidebar } from '../../components/Sidebar';
 import { Post } from '../../components/Post';
 import { Input } from '../../components/Input';

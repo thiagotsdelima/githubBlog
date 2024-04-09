@@ -15,4 +15,5 @@ export const TransactionsContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);  
   margin: 4rem auto 0;
   padding: 0 1.5rem;
+  
 `;
