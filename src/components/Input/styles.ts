@@ -16,10 +16,11 @@ export const Container = styled.div`
     color: ${props => props.theme['base-500']};
     background: transparent;
    
-    &:placeholder {
+    &::placeholder {
       font-size: 14px;
       font-weight: 400;
       color: ${props => props.theme['gray-100']};
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
     }
   }
 
