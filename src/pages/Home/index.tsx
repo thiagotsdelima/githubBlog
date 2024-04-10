@@ -1,5 +1,5 @@
 import { Header } from "../../components/Header";
-import { HomeContainer, TransactionsContainer, Wrapper } from "./styles";
+import { HomeContainer, InputContainer, TransactionsContainer, Wrapper } from "./styles";
 import { Sidebar } from '../../components/Sidebar';
 import { Post } from '../../components/Post';
 import { Input } from '../../components/Input';
@@ -10,11 +10,13 @@ export function Home() {
       <Header/>
       <Wrapper>
         <Sidebar />
+        <InputContainer>
         <section>
           <strong>Publicações</strong>
           <span>6 publicações</span>
         </section>
-        <Input />
+        <Input placeholder="Digite sua busca..." />
+        </InputContainer>
         <TransactionsContainer>
           <Post />
           <Post />

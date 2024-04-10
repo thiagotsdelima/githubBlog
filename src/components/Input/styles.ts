@@ -2,21 +2,16 @@ import { styled } from "styled-components"
 
 
 export const Container = styled.div`
-  width: 630px;
+  width: 54rem;
 
   background: ${props => props.theme['input-1500']};
 
-  display: flex;
-  align-items: center;
-
-  border-radius: 10px;
-
   > input {
-    height: 56px;
+    height: 3.5rem;
     width: 100%;
-
+    border: transparent;
     padding: 0 12px;
-    border: 0;
+    border-radius: 6px;
 
     color: ${props => props.theme['base-500']};
     background: transparent;
@@ -24,7 +19,7 @@ export const Container = styled.div`
     &:placeholder {
       font-size: 14px;
       font-weight: 400;
-      color: ${props => props.theme[' base-700']};
+      color: ${props => props.theme['gray-100']};
     }
   }
 
