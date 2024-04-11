@@ -4,13 +4,12 @@ import { Sidebar } from './components/Sidebar';
 import { Input } from './components/Input';
 import { useContext } from "react";
 import { PostsContext } from "../../PostContext";
-import { Post } from "./components/Post/index.tsx";
+import { Post } from "./components/Post";
 
 
 export function Home() {
   const { posts } = useContext(PostsContext);
 
-  const sortedPosts = posts.slice(0, 6);
   return (
     <HomeContainer>
       <Header/>
@@ -19,19 +18,19 @@ export function Home() {
         <InputContainer>
           <section>
             <strong>Publicações</strong>
-            <span>{(posts?.length ?? 0)} {posts?.length === 1 ? 'Publication' : 'publications'}</span>
+            <span>{posts.length} {posts.length === 1 ? 'Publication' : 'publications'}</span>
           </section>
-        <Input
-          type="text" 
-          placeholder="Digite sua busca..."
-        />
+          <Input
+            type="text" 
+            placeholder="Digite sua busca..."
+          />
         </InputContainer>
         <TransactionsContainer>
-        {sortedPosts.map(post => (
-            <Post key={post.number} post={post} />
+          {posts.slice(0, 6).map(issue => (
+              <Post key={issue.number} dataPost={issue} />
           ))}
         </TransactionsContainer>
       </Wrapper>
     </HomeContainer>
-  )
+  );
 }
