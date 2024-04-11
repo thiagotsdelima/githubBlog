@@ -12,20 +12,18 @@ display: flex;
 justify-content: space-between;
 align-items: flex-start;
 
-.imgContainer {
-  height: 148px;
-  width: 148px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.imgContainer img {
+  width: 33%;
+  height: 300%;
+  object-fit: cover;
   border-radius: 8px;
-  }
+}
+
 `;
 
 export const SidebarContent = styled.div`
 width: 624px;
-margin-left: 2rem;
+margin-left: -17rem;
 header {
   display: flex;
   justify-content: space-between;
@@ -59,7 +57,7 @@ footer {
     color: ${props => props.theme['gray-400']};
 
     strong {
-      margin-left: 8px; /* Espaçamento entre o ícone e o texto */
+      margin-left: 8px; 
     }
   }
 `;
