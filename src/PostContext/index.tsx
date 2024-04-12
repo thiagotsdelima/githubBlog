@@ -51,3 +51,7 @@ export function PostsProvider({ children }: PostsProviderProps) {
     
   );
 }
+
+/* const response = await axios.get(`https:api.github.com/search/issues`, {
+  params: { q: `repo:github/react is:issue ${query}` },
+});*/
