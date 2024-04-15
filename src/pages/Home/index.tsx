@@ -1,54 +1,35 @@
-import { Header } from "../../components/Header";
 import { HomeContainer, InputContainer, TransactionsContainer, Wrapper } from "./styles";
 import { Sidebar } from './components/Sidebar';
 import { Input } from './components/Input';
-import { useEffect, useState } from "react";
 import { Post } from "./components/Post";
-import { api } from "../../services/api";
-import { useParams } from "react-router-dom";
+import { PostsContext } from "../../PostContext";
+import { useContext } from "react";
 
-
-export interface IPost {
-  number: number
-  html_url: string
-  title: string
-  body: string
-  user: {
-    login: string
-  }
-  created_at: string
-  comments: number
-}
 
 export function Home() {
-  const [post, setPost] = useState<IPost>()
-  const { id } = useParams()
+  const { posts } = useContext(PostsContext);
+  console.log(posts);
 
-  useEffect(() => {
-    api.get(`repos/diego3g/github-blog/issues/${id}`).then((response) => {
-      setPost(response.data)
-    })
-  }, [])
+  if (!posts) {
+    return <p>Loading posts...</p>;
+  }
 
   return (
     <HomeContainer>
-      <Header/>
+     
       <Wrapper>
         <Sidebar />
         <InputContainer>
           <section>
             <strong>Publicações</strong>
-            <span>{setPost.length} {setPost.length === 1 ? 'Publication' : 'publications'}</span>
+            <span>{posts.length} Publications</span>
           </section>
-          <Input
-            type="text" 
-            placeholder="Digite sua busca..."
-          />
+          <Input type="text" placeholder="Digite sua busca..." />
         </InputContainer>
         <TransactionsContainer>
-        {post && (
-              <Post /> 
-            )}
+        {posts.map((post) => (
+            <Post key={post.number.toString()} post={post} />
+          ))}
         </TransactionsContainer>
       </Wrapper>
     </HomeContainer>

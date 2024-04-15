@@ -1,9 +1,9 @@
 import { PostContainer, PostContent } from "./styles";
-import { formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { IPost } from '../../../../PostContext'
+import { IPost, PostsContext } from '../../../../PostContext'
 
-interface PostProps  {
+interface PostProps {
   post: IPost
 }
 
@@ -12,21 +12,19 @@ export function Post({ post }: PostProps) {
   const timeDistanceNow = formatDistanceToNow(new Date(post!.created_at), {
     addSuffix: true,
     locale: ptBR,
-  })
+  });
 
   return (
-    <div>
-        <PostContainer>
-          <PostContent>
-            <header>
-              <h2>{post?.title}</h2>
-              <span>{timeDistanceNow}</span>
-            </header>
-            <footer>
-              <p>{post?.body}</p>
-            </footer>
-          </PostContent>
-        </PostContainer>
-    </div>
+    <PostContainer>
+      <PostContent>
+        <header>
+          <h2>{post?.title}</h2>
+          <span>{timeDistanceNow}</span>
+        </header>
+        <footer>
+          <p>{post?.body}</p>
+        </footer>
+      </PostContent>
+    </PostContainer>
   );
 }

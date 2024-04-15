@@ -1,57 +1,46 @@
-import { ReactNode, createContext, useCallback, useEffect, useState } from "react";
-import { api } from '../services/api'; 
+import React, { createContext, useState, useEffect, useCallback } from 'react';
+import { api } from '../services/api';
+
 
 export interface IPost {
-  body: string;
+  id: number;  
   title: string;
+  body: string;
   created_at: string;
   comments: number;
   html_url: string;
   user: {
-      login: string;
+    login: string;
   };
 }
+
 interface PostsContextType {
-  posts: IPost[]
-  SearchPosts: (query?: string) => void;
+  posts: IPost[];
 }
 
-interface PostsProviderProps {
-  children: ReactNode
-}
-export const PostsContext = createContext<PostsContextType>({
-  posts: [],
-  SearchPosts: async () => {}
-} as PostsContextType);
 
-export function PostsProvider({ children }: PostsProviderProps) {
+export const PostsContext = createContext<PostsContextType | undefined>(undefined);
+
+
+export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
   const [posts, setPosts] = useState<IPost[]>([]);
 
-  const SearchPosts = useCallback(async (query = '') => {
-    try {
-      const response = await api.get(`/search/issues`, {
-        params: { q: `repo:diego3g/github-blog ${query}` },
-      });
-      console.log("Dados recebidos após chamada API:", response.data.items);
-      setPosts(response.data.items);
-    } catch (error) {
-      console.error("Erro ao buscar posts:", error);
-    }
-  }, []);
+  const fetchPosts = useCallback(async (query = '') => {
+    const response = await api.get('/search/issues', {
+      params: {
+        q: `repo:diego3g/github-blog ${query}`,
+      },
+    })
+    setPosts(response.data.items)
+  }, [])
 
   useEffect(() => {
-    SearchPosts();
-  }, [SearchPosts]);
+    fetchPosts()
+  }, [fetchPosts])
 
   return (
-    
-        <PostsContext.Provider value={{ posts, SearchPosts }}>
-          {children}
-        </PostsContext.Provider>
-    
+    <PostsContext.Provider value={{ posts }}>
+      {children}
+    </PostsContext.Provider>
   );
-}
-
-/* const response = await axios.get(`https:api.github.com/search/issues`, {
-  params: { q: `repo:github/react is:issue ${query}` },
-});*/
+};
