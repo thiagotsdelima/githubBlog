@@ -35,7 +35,7 @@ export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
   }, [fetchPosts])
 
   return (
-    <PostsContext.Provider value={{ posts }}>
+    <PostsContext.Provider value={{ posts, fetchPosts }}>
       {children}
     </PostsContext.Provider>
   );

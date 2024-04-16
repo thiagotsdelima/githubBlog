@@ -1,21 +1,41 @@
+import { useContext } from "react";
+import { useForm } from 'react-hook-form';
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { HomeContainer, InputContainer, TransactionsContainer, Wrapper } from "./styles";
 import { Sidebar } from './components/Sidebar';
 import { Input } from './components/Input';
 import { Post } from "./components/Post";
 import { PostsContext } from "../../PostContext";
-import { useContext } from "react";
 
+const searchSchema = z.object({
+  query: z.string(),
+});
+
+type SearchInputs = z.infer<typeof searchSchema>;
 
 export function Home() {
-  const { posts } = useContext(PostsContext);
+  const { posts, fetchPosts } = useContext(PostsContext); 
+
 
   if (!posts) {
     return <p>Loading posts...</p>;
   }
 
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<SearchInputs>({
+    resolver: zodResolver(searchSchema),
+  });
+
+  function handleSearchSubmit(data: SearchInputs) {
+    fetchPosts(data.query);
+  }
+  
   return (
     <HomeContainer>
-     
       <Wrapper>
         <Sidebar />
         <InputContainer>
@@ -23,11 +43,18 @@ export function Home() {
             <strong>Publicações</strong>
             <span>{posts.length} Publications</span>
           </section>
-          <Input type="text" placeholder="Digite sua busca..." />
+          <form onSubmit={handleSubmit(handleSearchSubmit)}>
+            <Input 
+              type="text" 
+              placeholder="Digite sua busca..."
+              {...register('query')}
+              disabled={isSubmitting} 
+            />
+          </form>
         </InputContainer>
         <TransactionsContainer>
-        {posts.map((post) => (
-            <Post key={post.number.toString()} post={post} />
+          {posts.map((post) => (
+            <Post key={post.id.toString()} post={post} />
           ))}
         </TransactionsContainer>
       </Wrapper>

@@ -1,7 +1,8 @@
 import { PostContainer, PostContent } from "./styles";
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { IPost, PostsContext } from '../../../../PostContext'
+import { IPost, PostsContext } from '../../../../PostContext';
+import { NavLink } from 'react-router-dom';
 
 interface PostProps {
   post: IPost
@@ -15,6 +16,7 @@ export function Post({ post }: PostProps) {
   });
 
   return (
+    <NavLink to={`/post/${post?.number}`} style={{ textDecoration: 'none' }}>
     <PostContainer>
       <PostContent>
         <header>
@@ -26,5 +28,6 @@ export function Post({ post }: PostProps) {
         </footer>
       </PostContent>
     </PostContainer>
+    </NavLink>
   );
 }
