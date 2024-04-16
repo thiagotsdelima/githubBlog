@@ -26,12 +26,8 @@ export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
   const [posts, setPosts] = useState<IPost[]>([]);
 
   const fetchPosts = useCallback(async (query = '') => {
-    const response = await api.get('/search/issues', {
-      params: {
-        q: `repo:diego3g/github-blog ${query}`,
-      },
-    })
-    setPosts(response.data.items)
+    const response = await api.get(`/search/issues?q=${encodeURIComponent(query ?? '')}repo:rocketseat-education/reactjs-github-blog-challenge`)
+    setPosts(response.data.items.slice(0, 6));
   }, [])
 
   useEffect(() => {

@@ -8,7 +8,6 @@ import { useContext } from "react";
 
 export function Home() {
   const { posts } = useContext(PostsContext);
-  console.log(posts);
 
   if (!posts) {
     return <p>Loading posts...</p>;

@@ -22,7 +22,7 @@ export function Post({ post }: PostProps) {
           <span>{timeDistanceNow}</span>
         </header>
         <footer>
-          <p>{post?.body}</p>
+        <p className="post-body">{post?.body}</p>
         </footer>
       </PostContent>
     </PostContainer>

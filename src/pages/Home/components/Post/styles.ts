@@ -24,6 +24,7 @@ header {
     color: ${props => props.theme['gray-300']};
   }
   span {
+    margin-top: .4rem;
     font-size: 14px;
     font-weight: 400;
     line-height: 160%;
@@ -31,12 +32,23 @@ header {
   }
 }
 footer {
+  width: 338px;
+  height: 112px;
   p {
     font-size: 16px;
     font-weight: 400;
     line-height: 160%;
     color: ${props => props.theme['gray-500']};
   }
+  .post-body {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4.8em; 
+}
+
 }
 
 &:first-child {
