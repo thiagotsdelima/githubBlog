@@ -46,7 +46,7 @@ footer {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 4.8em; 
+  max-height: 6.8em; 
 }
 
 }

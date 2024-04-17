@@ -40,7 +40,7 @@ export function Home() {
         <Sidebar />
         <InputContainer>
           <section>
-            <strong>Publicações</strong>
+            <strong>Publications</strong>
             <span>{posts.length} Publications</span>
           </section>
           <form onSubmit={handleSubmit(handleSearchSubmit)}>
