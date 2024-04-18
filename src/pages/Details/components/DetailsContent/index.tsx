@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -16,21 +16,15 @@ interface DetailsContentProps {
 }
 
 export function DetailsContent({ post }: DetailsContentProps) {
-  console.log("Rendering post content for:", post.title);
-
-  
-  const extractHighlightRanges = (meta: string) => {
-    return rangeParser(meta);
-  };
+  const extractHighlightRanges = React.useCallback((meta: string) => {
+    return rangeParser(meta || '');
+  }, []);
 
   const highlightedLineNumbers = extractHighlightRanges(post.meta || '');
 
-  const generateLineProps = useCallback(
-    (lineNumber: number) => ({
-      style: highlightedLineNumbers.includes(lineNumber) ? { background: 'yellow' } : undefined,
-    }),
-    [highlightedLineNumbers]
-  );
+  const generateLineProps = React.useCallback((lineNumber: number) => ({
+    style: highlightedLineNumbers.includes(lineNumber) ? { background: 'yellow' } : undefined,
+  }), [highlightedLineNumbers]);
 
   return (
     <ArticleContainer>
@@ -44,7 +38,6 @@ export function DetailsContent({ post }: DetailsContentProps) {
             }
             const match = /language-(\w+)/.exec(className || '');
             const language = match ? match[1] : 'plaintext';
-
             return (
               <SyntaxHighlighter
                 language={language}
@@ -57,7 +50,7 @@ export function DetailsContent({ post }: DetailsContentProps) {
                 lineProps={lineNumber => generateLineProps(lineNumber)}
                 {...props}
               >
-                {String(children).replace(/\s+$/, '')}  
+                {String(children).replace(/\s+$/, '')}
               </SyntaxHighlighter>
             );
           },

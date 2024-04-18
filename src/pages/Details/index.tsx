@@ -1,51 +1,43 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { api } from "../../services/api";
 import { DetailsContent } from "./components/DetailsContent";
 import { Sidebar } from "./components/Sidebar";
 import { PostContainer } from "./styles";
-
-export interface IPost {
-  number: number;
-  html_url: string;
-  title: string;
-  body: string;
-  user: {
-    login: string;
-  };
-  created_at: string;
-  comments: number;
-}
+import { IPost, PostsContext } from "../../PostContext";
 
 export function Details() {
-  const [post, setPost] = useState<IPost | null>(null);
+  const { posts, fetchPost } = useContext(PostsContext);
+  const { id } = useParams<{ id: string }>();
   const [error, setError] = useState<string | null>(null);
-  const { id } = useParams();
 
   useEffect(() => {
-    console.log("ID:", id);
-    api.get(`https://api.github.com/repos/actualOwner/actualRepo/issues/${id}`)
-      .then(response => {
-        console.log("Dados recebidos:", response.data);
-        setPost(response.data);
-        setError(null); 
-      })
-      .catch(error => {
-        console.error("Erro na chamada API:", error);
-        setError("Failed to load data"); 
+    console.log("Attempting to fetch post with ID:", id);
+    if (id) {
+      fetchPost(id).catch((error) => {
+        console.error("Failed to fetch post:", error);
+        setError("Failed to load post");
       });
-  }, [id]);
+    }
+  }, [id, fetchPost]);
+  
+  const post = posts.find((p: IPost) => p.id === Number(id));
+  console.log("Rendered with post:", post);
+  
 
-  if (!post && !error) {
-    return <div>Loading...</div>;
-  } else if (error) {
-    return <div>Error loading post. Please try again later.</div>;
+  if (error) {
+      return <div>{error}</div>;
+  }
+  if (!post) {
+      return <div>Loading...</div>;
+  }
+  if (!post.title || !post.body) {
+      return <div>Post is not available or is missing essential data.</div>;
   }
 
   return (
-    <PostContainer>
-      <Sidebar post={post!} />  
-      <DetailsContent content={post!.body} />  // Here too
-    </PostContainer>
+      <PostContainer>
+          <Sidebar post={post} />
+          <DetailsContent post={post} />
+      </PostContainer>
   );
 }
