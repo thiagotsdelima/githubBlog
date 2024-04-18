@@ -15,7 +15,6 @@ export function Sidebar({ post }: SidebarProps) {
     return <div>Loading...</div>;
   }
 
-  console.log("Rendering sidebar for post:", post.title);
   const timeDistanceToNow = formatDistanceToNow(new Date(post.created_at), {
     addSuffix: true,
     locale: ptBR,

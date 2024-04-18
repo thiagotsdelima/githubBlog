@@ -33,28 +33,28 @@ export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
     setPosts(response.data.items.slice(0, 6));
   }, []);
 
-  const fetchPost = useCallback(async (id: string) => {
-    try {
-      console.log(`Fetching post with ID: ${id}`);
-      const response = await api.get(`/repos/rocketseat-education/reactjs-github-blog-challenge/issues/${id}`);
-      const newPost = response.data;
-  
-      setPosts(prevPosts => {
-        const index = prevPosts.findIndex(p => p.id.toString() === newPost.id.toString());
-        if (index !== -1) {
-          const updatedPosts = [...prevPosts];
-          updatedPosts[index] = newPost;
-          return updatedPosts;
-        } else {
-          return [...prevPosts, newPost];
-        }
-      });
-      console.log(`Post fetched and state updated for ID: ${id}`);
-    } catch (error) {
-      console.error("Error fetching post:", error);
-    }
-  }, []);
-  
+
+const fetchPost = useCallback(async (id) => {
+  try {
+    const response = await api.get(`/repos/rocketseat-education/reactjs-github-blog-challenge/issues/${id}`);
+    const newPost = response.data;
+    setPosts(prevPosts => {
+      const index = prevPosts.findIndex(p => p.id === newPost.id);
+      const updatedPosts = [...prevPosts];
+      if (index !== -1) {
+        updatedPosts[index] = newPost;
+      } else {
+        updatedPosts.push(newPost);
+      }
+      return updatedPosts;
+    });
+    return newPost; 
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    throw error;  
+  }
+}, []);
+
   
 
   return (

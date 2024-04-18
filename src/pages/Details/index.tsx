@@ -6,38 +6,41 @@ import { PostContainer } from "./styles";
 import { IPost, PostsContext } from "../../PostContext";
 
 export function Details() {
-  const { posts, fetchPost } = useContext(PostsContext);
+  const { fetchPost } = useContext(PostsContext);
   const { id } = useParams<{ id: string }>();
+  const [post, setPost] = useState<IPost | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log("Attempting to fetch post with ID:", id);
-    if (id) {
-      fetchPost(id).catch((error) => {
-        console.error("Failed to fetch post:", error);
-        setError("Failed to load post");
-      });
-    }
+    const fetchAndSetPost = async () => {
+      if (id) {
+        try {
+          const fetchedPost = await fetchPost(id);
+          setPost(fetchedPost);
+        } catch (error) {
+          console.error("Failed to fetch post:", error);
+          setError("Failed to load post");
+        }
+      }
+    };
+  
+    fetchAndSetPost();
   }, [id, fetchPost]);
-  
-  const post = posts.find((p: IPost) => p.id === Number(id));
-  console.log("Rendered with post:", post);
-  
 
   if (error) {
-      return <div>{error}</div>;
+    return <div>{error}</div>;
   }
   if (!post) {
-      return <div>Loading...</div>;
+    return <div>Loading...</div>;
   }
   if (!post.title || !post.body) {
-      return <div>Post is not available or is missing essential data.</div>;
+    return <div>Post is not available or is missing essential data.</div>;
   }
 
   return (
-      <PostContainer>
-          <Sidebar post={post} />
-          <DetailsContent post={post} />
-      </PostContainer>
+    <PostContainer>
+      <Sidebar post={post} />
+      <DetailsContent post={post} />
+    </PostContainer>
   );
 }
