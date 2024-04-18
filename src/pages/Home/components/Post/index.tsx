@@ -1,15 +1,17 @@
 import { PostContainer, PostContent } from "./styles";
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { IPost, PostsContext } from '../../../../PostContext';
+import { IPost } from '../../../../PostContext';
 import { NavLink } from 'react-router-dom';
 
 interface PostProps {
-  post: IPost
+  post: IPost | undefined;
 }
 
 export function Post({ post }: PostProps) {
 
+  if (!post) return <div>Loading...</div>;
+  
   const timeDistanceNow = formatDistanceToNow(new Date(post!.created_at), {
     addSuffix: true,
     locale: ptBR,

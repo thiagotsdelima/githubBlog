@@ -1,19 +1,19 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const textMedium = css`
   font-size: 1rem;
-`
+`;
 
-export conts ArticleContainer = styled.main`
- overflow: hidden;
+export const ArticleContainer = styled.main`
+  overflow: hidden;
   padding: 2.5rem 2rem;
 
-  h1, h2, h3, h4, h5, h6{
+  h1, h2, h3, h4, h5, h6 {
     margin-top: 2rem;
     margin-bottom: 1rem;
 
-    &:first-child{
-      margin-top:0
+    &:first-child {
+      margin-top: 0;
     }
   }
 
