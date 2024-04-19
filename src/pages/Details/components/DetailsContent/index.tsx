@@ -19,6 +19,11 @@ export interface IPost {
   meta?: string; 
 }
 
+interface DetailsContentProps {
+  post: IPost;
+}
+
+
 
 export function DetailsContent({ post }: DetailsContentProps) {
 

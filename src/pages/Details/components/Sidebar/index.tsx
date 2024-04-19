@@ -37,8 +37,8 @@ export function Sidebar({ post }: SidebarProps) {
             SEE ON GITHUB &nbsp;
             <FaExternalLinkAlt size={12}/>
           </a>
-          <h2>{post.title}</h2>
         </header>
+        <h2>{post.title}</h2>
         <footer>
           <span>
             <FaGithub />
