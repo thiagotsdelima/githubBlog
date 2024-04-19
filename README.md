@@ -29,18 +29,17 @@ export default {
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
-##Summary
+## Summary
 The Github Blog is a blog that uses the Github repository itself as a database, with the Issues in the repository presented as blog posts.
-
 This project was developed as a challenge for the API communication module, from the React track, from Bootcamp Ignite offered by Rocketseat.
 
-##Functionalities
+## Functionalities
 Display a list of posts extracted from repository issues, showing only the title and partial text;
   Display data from the repository owner;
   It must contain a page to display the entire post content;
   It must be possible to search posts using an argument.
 
-##Prerequisites
+## Prerequisites
   To run the project, you will need to have the following tools installed on your machine: Git, Node.js. Furthermore, it's good to have an editor to work with the code like VSCode.
 
 ## Installing
